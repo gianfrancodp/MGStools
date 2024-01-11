@@ -3,6 +3,8 @@
 Created on Wed Jan 10 08:17:34 2024
 
 @author: albdag
+
+requirements: python 3.8.18, gdal 3.8.3
 """
 
 from osgeo import ogr
