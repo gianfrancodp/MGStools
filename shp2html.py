@@ -12,6 +12,9 @@ from osgeo import ogr
 shapefile_path = r'sample_data/TOR1/TOR1.shp'
 raster_path = r'sample_data/TOR1/TOR1.jpg'
 
+# Use True to export as single page HTML, script add header and footer tags
+# to be able to open the file in a browser
+export_as_html_single_page = True 
 
 def fix_coords(coords, origin='top-left'):
     '''
@@ -78,7 +81,17 @@ if inner_rings_detected:
     print(f'Warning: {inner_rings_detected} holes detected. Not handled.')
 
 
-# Generate HTML code
+    # Generate HTML code wiht header and footer tags
+if export_as_html_single_page == True:
+    html_head = '<!DOCTYPE html>\n<html>\n<head>\n\t<title>Image Map</title>\n'\
+        '\t<meta charset="utf-8">\n</head>\n<body>\n'
+    html_foot = '</body>\n</html>'    
+# Generate HTML code wihtout header and footer tags
+else:
+    html_head = ''
+    html_foot = ''
+   
+    
 image_block = f'<img src="{raster_path}" usemap="#image-map" '\
                'style="width: 100%; height: auto;">\n'
 
@@ -91,11 +104,16 @@ for n, p in enumerate(polygons_vert, start=1):
     polygons_block += line
 polygons_block += '</map>'
 
+
 # Save as file
+
+
 with open('.\HTML_out.html', 'w') as out_file:
+    out_file.write(html_head)
     out_file.write(image_block)
     out_file.write('\n')
     out_file.write(polygons_block)
+    out_file.write(html_foot)
 
 
 
