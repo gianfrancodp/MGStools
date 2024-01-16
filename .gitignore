@@ -1,0 +1,18 @@
+# bin and lib are required for the virtual environment to work
+/bin
+/lib
+pyvenv.cfg
+/share
+/etc
+
+
+# Mac OS X system files
+.DS_Store
+*.DS_Store
+
+# Windows thubnail cache files
+*.Thumbs.db
+*.Desktop.ini
+$RECYCLE.BIN/
+*.\*
+

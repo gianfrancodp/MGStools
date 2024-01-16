@@ -1,8 +1,14 @@
 # -*- coding: utf-8 -*-
 """
-Created on Wed Jan 10 08:17:34 2024
 
 @author: albdag
+@contributor: gianfrancodp
+
+This script converts a shapefile with polygons to an HTML image map.
+
+see README.md for more info and usage
+
+
 """
 
 from osgeo import ogr
@@ -107,8 +113,7 @@ polygons_block += '</map>'
 
 # Save as file
 
-
-with open('.\HTML_out.html', 'w') as out_file:
+with open('HTML_out-test.html', 'w') as out_file:
     out_file.write(html_head)
     out_file.write(image_block)
     out_file.write('\n')
