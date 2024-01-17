@@ -1,9 +1,13 @@
 # -*- coding: utf-8 -*-
 """
 
-@author: albdag
+authors: @albdag, @gianfrancodp
+
+This script converts a shapefile with polygons to an HTML image map.
+see README.md for more info and usage
 
 requirements: python 3.8.18, gdal 3.8.3
+
 """
 
 from osgeo import ogr
