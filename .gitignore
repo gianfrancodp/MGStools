@@ -16,3 +16,4 @@ pyvenv.cfg
 $RECYCLE.BIN/
 *.\*
 
+shp2html.py.old

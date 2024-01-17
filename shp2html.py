@@ -2,13 +2,6 @@
 """
 
 @author: albdag
-@contributor: gianfrancodp
-
-This script converts a shapefile with polygons to an HTML image map.
-
-see README.md for more info and usage
-
-
 """
 
 from osgeo import ogr
