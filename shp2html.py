@@ -6,7 +6,8 @@ authors: @albdag, @gianfrancodp
 This script converts a shapefile with polygons to an HTML image map.
 see README.md for more info and usage
 
-requirements: python 3.8.18, gdal 3.8.3
+Python virtual env requirements: python 3.8.18, gdal 3.8.3
+Html output requirements: imageMapResizer.min.js file in the same folder as the output html file
 
 """
 
@@ -89,8 +90,10 @@ if inner_rings_detected:
     # Generate HTML code wiht header and footer tags
 if export_as_html_single_page == True:
     html_head = '<!DOCTYPE html>\n<html>\n<head>\n\t<title>Image Map</title>\n'\
-        '\t<meta charset="utf-8">\n</head>\n<body>\n'
-    html_foot = '</body>\n</html>'    
+        '\t<meta charset="utf-8">\n\t<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>\n'\
+        '\t<script src="imageMapResizer.min.js"></script>\n'\
+            '</head>\n<body>\n'   
+    html_foot = '<script>\n\t$(document).ready(function() {\n\t $(\'map\').imageMapResize();\n\t}); \n</script>\n</body>\n</html>'    
 # Generate HTML code wihtout header and footer tags
 else:
     html_head = ''
@@ -107,7 +110,7 @@ for n, p in enumerate(polygons_vert, start=1):
            f'alt="Element #{n}" title="Element #{n}" '\
            f'coords="{coords_str}" shape="poly">\n'
     polygons_block += line
-polygons_block += '</map>'
+polygons_block += '</map>\n'
 
 
 # Save as file
