@@ -10,7 +10,7 @@ Python virtual env requirements: python 3.8.18, gdal 3.8.3
 Html output requirements: imageMapResizer.min.js file in the same folder as the output html file
 
 """
-
+import json
 from osgeo import ogr
 
 
@@ -21,6 +21,13 @@ raster_path = r'sample_data/TOR1/TOR1.jpg'
 # Use True to export as single page HTML, script add header and footer tags
 # to be able to open the file in a browser
 export_as_html_single_page = True 
+
+
+# Use True to export the attribute table as json file separated from the html
+# If false the attribute table will be not exported.
+export_attribute_table_to_json = True
+
+#####################################################################
 
 def fix_coords(coords, origin='top-left'):
     '''
@@ -61,6 +68,8 @@ inner_rings_detected = 0
 
 # Set a global variable that holds the list of vertices of each polygon
 polygons_vert = []
+# set a global variable that holds the list of attributes of each polygon
+attributes_list = []
 
 # Open the shapefile
 shapefile = ogr.Open(shapefile_path)
@@ -70,6 +79,8 @@ layer = shapefile.GetLayer()
 
 # Iterate over the features in the layer
 for feature in layer:
+    attributes = feature.items() # get attributes
+    attributes_list.append(attributes) # append attributes to list
     geometry = feature.geometry()
 
     # Track inner rings
@@ -123,4 +134,6 @@ with open('HTML_out-test.html', 'w') as out_file:
     out_file.write(html_foot)
 
 
-
+if export_attribute_table_to_json == True:
+    with open('Attribute_table.json', 'w') as f:
+        json.dump(attributes_list, f)
