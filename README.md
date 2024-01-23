@@ -4,11 +4,11 @@ This repo contain tools for Metpet project
 For use in your local machine see this instructions:
 
 1. Prepare Python environment with below requirement
-2. Download python file "shp2html.py"
+2. Download python file "shp2html.py" or Jupyter notebook version "shp2html.ipynb"
 3. Open python file and update !!! User inputs !!! with your files and your project
 
 
-## shp2html.py
+## shp2html 
 Contributors: @albdag, @gianfrancodp
 
 This script converts a shapefile with polygons to an HTML image map.
@@ -50,12 +50,10 @@ Requirement for python environment
 
 4. Install python dependencies
 
-    pip install GDAL
+    `pip install GDAL`
 
-<!-- ### Additonal for Jupyter notebook
-in terminal with virtual environment activated
-
-    pip install jupyter
-    -->
+### Additonal for Jupyter notebook
+in terminal with virtual environment activated run: `pip install jupyter`
+    
 
 
