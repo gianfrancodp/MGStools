@@ -14,7 +14,7 @@ for Python libraries used:
 Copyright 2001-2024, Python Software Foundation.
 
 for GDAL/OGR libraries used:
-© 1998-2024 Frank Warmerdam, Even Rouault, and others
+Copyright 1998-2024 Frank Warmerdam, Even Rouault, and others
 
 Javascript libraries used:
 
