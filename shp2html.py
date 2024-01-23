@@ -48,7 +48,7 @@ NAME = 'TEST' # name of the project, used to name the output files
 def fix_coords(coords, origin='top-left'):
     '''
     Transform floating coordinates to integers and fixes their values based on
-    origin. Removes the last couple, which coincides with the first.
+    origin. Removes the last couple if it coincides with the first.
 
     Parameters
     ----------
@@ -69,10 +69,12 @@ def fix_coords(coords, origin='top-left'):
         List of fixed (x, y) tuples.
 
     '''
-    del coords[-1] # remove last coord
+    # Remove duplicated couples
+    if coords[0] == coords[-1]:
+        del coords[-1] 
 
     if origin == 'top-left':
-        fixed = [(int(round(x, 0)), int(round(abs(y), 0))) for x, y in coords]
+        fixed = [(abs(round(x)), abs(round(y))) for x, y in coords]
         return fixed
     else:
         raise NotImplementedError(f"Can't convert coords with origin {origin}")
