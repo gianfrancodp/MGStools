@@ -30,8 +30,8 @@ Javascript libraries used:
 """
 import json
 import os
-from osgeo import ogr
 from zipfile import ZipFile
+from osgeo import ogr
 
 # !!! User inputs !!!
 # Change this paths with the path to your shapefile and raster
