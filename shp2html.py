@@ -157,5 +157,5 @@ with ZipFile(rf'{NAME}.zip', 'w') as outzip:
     outzip.write(AttributeTable_path)
 
 # Remove files
-    os.remove(html_path)
-    os.remove(AttributeTable_path)
+os.remove(html_path)
+os.remove(AttributeTable_path)
