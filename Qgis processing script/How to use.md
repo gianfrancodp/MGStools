@@ -1,6 +1,6 @@
 # How to use the scriptin Qgis application
 
-1. Download [shp2html_qgis.py](Qgis%20processing%20script/shp2html_qgis.py) file
+1. Download [shp2html_qgis.py](shp2html_qgis.py) file
 2. Open Qgis in your desktop
 3. Go to menù Plugin -> Console Python
 
