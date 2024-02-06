@@ -1,4 +1,4 @@
-# How to use the scriptin Qgis application
+# How to use the script in Qgis application
 
 1. Download [shp2html_qgis.py](shp2html_qgis.py) file
 2. Open Qgis in your desktop
