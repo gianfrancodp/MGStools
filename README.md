@@ -3,32 +3,24 @@
 This repo contain tools for Metpet project
 For use in your local machine see this instructions:
 
+## Using on a Qgis desktop as custom script
+
+- See detalied [instruction](Qgis%20processing%20script/How%20to%20use.md)
+
+<!-- ## Using on ArGIS desktop as Toolbox -->
+
+<!-- -  -->
+
+
+## Using in a python environment or Jupyter notebook
+
 1. Prepare Python environment with below requirement
 2. Download python file "shp2html.py" or Jupyter notebook version "shp2html.ipynb"
 3. Open python file and update !!! User inputs !!! with your files and your project
 
-
-## shp2html 
-Contributors: @albdag, @gianfrancodp
-
-This script converts a shapefile with polygons to an HTML image map.
-see README.md for more info and usage
-
-Python virtual env requirements: python 3.8.18, gdal 3.8.3
-
-CREDITS:
-
-- Python libraries used | Copyright 2001-2024, Python Software Foundation.
-- GDAL/OGR libraries used | Copyright 1998-2024 Frank Warmerdam, Even Rouault, and others
-
-Javascript libraries used:
-- Image Map Resizer (imageMapResizer.min.js ) - v1.0.10 - 2019-04-10 | Copyright: (c) 2019 David J. Bradshaw - dave@bradshaw.net | License: MIT
-- jQuery v3.5.1 | (c) JS Foundation and other contributors | jquery.org/license */
-
-
-## Python environment
-
 ### Python environment
+
+#### Python environment
 Requirement for python environment
 
 1. Install native GDAL
