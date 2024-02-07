@@ -159,7 +159,7 @@ HTMLPOLYGONS += '</map>\n'
 
 #preparing Path and files
 html_path = ntpath.join(OUTDIR,f'{NAME}.html')
-AttributeTable_path = ntpath.join(OUTPDIR, f'{NAME}.json')
+AttributeTable_path = ntpath.join(OUTDIR, f'{NAME}.json')
 outputfile_path = ntpath.join(OUTDIR,f'{NAME}.zip')
 
 # Create temporary raster file
