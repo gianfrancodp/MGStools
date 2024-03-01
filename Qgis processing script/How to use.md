@@ -17,6 +17,9 @@
 6. Select the downloaded .py file
 7. Change input data in the header of file
 
+- **Check write permission on output folder**
+- Do not use the same folder of input files
+
 <div style="text-align:center"><img src="./images/4.png" width=80%></div>
 
 8. Click on "Run" (Play) icon.
