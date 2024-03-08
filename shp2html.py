@@ -37,9 +37,9 @@ from osgeo import ogr
 
 # !!! User inputs !!!
 # Change this paths with the path to your shapefile and raster
-SHAPEFILE = r'sample_data/TOR1/TOR1.shp'
-RASTER = r'sample_data/TOR1/TOR1.jpg'
-NAME = 'TEST' # name of the project, used to name the output files
+SHAPEFILE = r'sample_data/PAL/PAL22 - porphyroclasts/PAL22_min_porphy.shp'
+RASTER = r'sample_data/PAL/PAL22/PAL22.jpg'
+NAME = 'PAL22_PIRO' # name of the project, used to name the output files
 # !!! End of user inputs !!!
 
 #####################################################################
