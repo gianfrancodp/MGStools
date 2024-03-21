@@ -2,8 +2,7 @@
 
 authors: @albdag
 
-This script converts a shapefile with polygons to an HTML image map within
-the ArcGIS Desktop environment. 
+This script generates PNG masks for each mineral class within a shapefile. The image size is the same of an input base raster (thin section scan). 
 NOTE: This script is not meant to be executed as is, but rather embedded within an ArcGIS toolbox! (see 'Metpetools_ArcMap.tbx').
 See also: https://desktop.arcgis.com/en/arcmap/latest/analyze/sharing-workflows/embedding-scripts-and-password-protecting-tools.htm
 
