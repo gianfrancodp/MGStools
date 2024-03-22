@@ -134,9 +134,10 @@ HTMLFOOT = u'<script>\n\t$(document).ready(function() {\n\t $(\'map\').imageMapR
 image_block = u'<img src="{0}" usemap="#image-map" style="width: 100%; height: auto;">\n'.format(RASTER_NAME)
 
 HTMLPOLYGONS = u'<map name="image-map">\n'
-for n, p in enumerate(polygons_vert, start=1):
-    COORDSSTR = str(p)[1:-1].replace('(','').replace(')','').replace(' ','')
-    line = u'\t<area target="_blank" id="imgzone{0}" alt="Element #{0}" title="Element #{0}" coords="{1}" shape="poly">\n'.format(n, COORDSSTR)
+for a, p in zip(attributes_list, polygons_vert):
+    coordstr = str(p)[1:-1].replace('(','').replace(')','').replace(' ','')
+    id_ = a['OBJECTID']
+    line = u'\t<area target="_blank" id="imgzone{0}" alt="Element #{0}" title="Element #{0}" coords="{1}" shape="poly">\n'.format(id_, coordstr)
     HTMLPOLYGONS += line
 HTMLPOLYGONS += u'</map>\n'
 

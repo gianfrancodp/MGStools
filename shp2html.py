@@ -6,7 +6,7 @@ authors: @albdag, @gianfrancodp
 This script converts a shapefile with polygons to an HTML image map.
 see README.md for more info and usage
 
-Python virtual env requirements: python 3.8.18, gdal 3.8.3
+Python virtual env requirements: python 3.8+, gdal 3.8.x
 
 CREDITS:
 
@@ -109,13 +109,11 @@ for feature in layer:
     vertices = geometry.GetGeometryRef(0).GetPoints()
     polygons_vert.append(fix_coords(vertices))
 
-
 # Send warning if inner rings (holes) have been detected
 if INRINGS:
     print(f'Warning: {INRINGS} holes detected. Not handled.')
 
-    # HTML header and footer part
-
+# HTML header and footer part
 HTMLHEAD = '<!DOCTYPE html>\n<html>\n<head>\n\t<title>Image Map</title>\n'\
     '\t<meta charset="utf-8">\n\t<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>\n'\
     '\t<script src="https://cdnjs.cloudflare.com/ajax/libs/image-map-resizer/1.0.10/js/imageMapResizer.min.js"></script>\n'\
@@ -127,11 +125,12 @@ image_block = f'<img src="{RASTER}" usemap="#image-map" '\
                'style="width: 100%; height: auto;">\n'
 
 HTMLPOLYGONS = '<map name="image-map">\n'
-for n, p in enumerate(polygons_vert, start=1):
-    COORDSSTR = str(p)[1:-1].replace('(','').replace(')','').replace(' ','')
-    line = f'\t<area target="_blank" id="imgzone{n}" '\
-           f'alt="Element #{n}" title="Element #{n}" '\
-           f'coords="{COORDSSTR}" shape="poly">\n'
+for a, p in zip(attributes_list, polygons_vert):
+    coordstr = str(p)[1:-1].replace('(','').replace(')','').replace(' ','')
+    id_ = a['OBJECTID']
+    line = f'\t<area target="_blank" id="imgzone{id_}" '\
+           f'alt="Element #{id_}" title="Element #{id_}" '\
+           f'coords="{coordstr}" shape="poly">\n'
     HTMLPOLYGONS += line
 HTMLPOLYGONS += '</map>\n'
 
