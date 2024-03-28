@@ -149,11 +149,13 @@ image_block = f'<img src="{RASTER_NAME}" usemap="#image-map" '\
                'style="width: 100%; height: auto;">\n'
 
 HTMLPOLYGONS = f'<map name="image-map">\n'
-for n, p in enumerate(polygons_vert, start=1):
-    COORDSSTR = str(p)[1:-1].replace('(','').replace(')','').replace(' ','')
-    line = f'\t<area target="_blank" id="imgzone{n}" '\
-           f'alt="Element #{n}" title="Element #{n}" '\
-           f'coords="{COORDSSTR}" shape="poly">\n'
+
+for a, p in zip(attributes_list, polygons_vert):
+    coordstr = str(p)[1:-1].replace('(','').replace(')','').replace(' ','')
+    id_ = a['OBJECTID']
+    line = f'\t<area target="_blank" id="imgzone{id_}" '\
+           f'alt="Element #{id_}" title="Element #{id_}" '\
+           f'coords="{coordstr}" shape="poly">\n'
     HTMLPOLYGONS += line
 HTMLPOLYGONS += '</map>\n'
 
