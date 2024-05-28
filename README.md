@@ -3,7 +3,8 @@
 This repo contain tools for Metpet project
 For use in your local machine see this instructions:
 
-We recomend use Jupyter notebook version [shp2html.ipynb](notebook/shp2html.ipynb)
+**We recomend use Jupyter notebook version** [shp2html.ipynb](notebook/shp2html.ipynb)
+
 
 
 ## Jump to:
@@ -51,7 +52,7 @@ Toolbox was developed using ArcGis Pro 3.2
 <div style="text-align:left"><img src="./ArcGis%20toolboxes/images/2.png" width="400"></div>
 
 
-## 3. Using in a python virtual environment or Jupyter notebook
+## 3. Using via Jupyter notebook
 
 1. Prepare Python environment with below requirement
 - Install native GDAL
@@ -62,7 +63,8 @@ Toolbox was developed using ArcGis Pro 3.2
     - On UnixLike system `source ./bin/activate`
 - Install python dependencies: `pip install GDAL`
 - Additional dependencies for Jupyter notebook: `pip install jupyter`
-2. Download python file [shp2html.py](shp2html.py) or Jupyter notebook version [shp2html.ipynb](notebook/shp2html.ipynb)
+2. Download Jupyter notebook version [shp2html.ipynb](notebook/shp2html.ipynb)
+and run
 <div style="text-align:left"><img src="./notebook/input mask.png" width="500"></div>
 3. Open file (pyton or Jupyter notebook) and update !!! User inputs !!! with your files and your project
 4. Run It!
