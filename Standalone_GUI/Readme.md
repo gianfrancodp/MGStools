@@ -8,3 +8,5 @@ Using these assets:
 - `/three` folder, relative subfolders and files
 
 It is possible to make an executable script to make an html single-page web viewer of an KMZ 3D model file. Using Three.JS javascript library.
+
+TODO: write how to compile in .exe using Tkinter toolbox
