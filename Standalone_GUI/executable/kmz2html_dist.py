@@ -40,6 +40,7 @@ class EntryWithPlaceholder(tk.Entry):
 
 
 class FileBrowser(tk.Button):
+    #TODO: Add file size limit and file type filter
     def __init__(self, master, path_label: tk.Label, get_file_data=True,
                  filetypes=[('All files', '*')]):
         super().__init__(master, text='Browse', bg='#FFFFFF', 

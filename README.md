@@ -11,6 +11,7 @@ For use in your local machine see this instructions:
 - [Qgis Desktop](#1-using-on-a-qgis-desktop-as-custom-script)
 - [Esri ArcGis](#2-using-inside-esri-arcgisproarcmap-applications)
 - [Python/Notebook](#3-using-in-a-python-virtual-environment-or-jupyter-notebook)
+- [KMZ to HTML script GUI](Standalone_GUI/Readme.md)
 
 ## 1. Using on a Qgis desktop as custom script
 
