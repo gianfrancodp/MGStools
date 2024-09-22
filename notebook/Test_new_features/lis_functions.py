@@ -23,19 +23,24 @@ def upload_files_widgets():
         description='Name:',
         placeholder='NAME'
     )
-    EPSGcode = widgets.Text(
-        description='EPSG:',
-        placeholder='EPSG code'
-    )
+    # EPSGcode = widgets.Text(
+    #     description='EPSG:',
+    #     placeholder='54043'
+    # )
 
     labelShp = widgets.Label(value='Select ALL the shapefile files [.shp, .dbf, .shx, .cpg]')
     labelImg = widgets.Label(value='Select the Image file')
     labelName = widgets.Label(value='Select the project name')
-    labelEPSG = widgets.Label(value='Select the EPSG code of files (not work with custom projection)')
+    # labelEPSG = widgets.Label(value='Select the EPSG code of files (not work with custom projection)')
     disclaimer = widgets.Label(value='Note: ouptut folder will be created in the same directory as the input files')
-    display(labelShp, Shapefile_selector, labelImg, Jpgfile_selector, labelName, projectname, labelEPSG, EPSGcode, disclaimer)
-    return Shapefile_selector, Jpgfile_selector, projectname, EPSGcode
+    
+    # display(labelShp, Shapefile_selector, labelImg, Jpgfile_selector, labelName, projectname, labelEPSG, EPSGcode, disclaimer)
 
+    # return Shapefile_selector, Jpgfile_selector, projectname, EPSGcode
+    
+    display(labelShp, Shapefile_selector, labelImg, Jpgfile_selector, labelName, projectname, disclaimer)
+    
+    return Shapefile_selector, Jpgfile_selector, projectname
 
 
 def save_to_temp_dir(Shapefile_selector, Jpgfile_selector):
