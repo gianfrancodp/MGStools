@@ -4,6 +4,7 @@
 pyvenv.cfg
 /share
 /etc
+*.pyc
 
 
 # Mac OS X system files
