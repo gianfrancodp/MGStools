@@ -3,9 +3,21 @@
 This repo contain tools for Metpet project
 For use in your local machine see this instructions:
 
+## NOTE: This is a repository for experiments and testing by author and collabs
+
+***All of file must be considered not stable***
+
+*interesting things can be finded in the [TESTING Zone](/TESTING_zone/) folder*
+
+___
+
+Actual version proposed is used in:
+
+Di Pietro, G., D’Agostino, A., Ortolano, G., Fazio, E., Visalli, R., Musumeci, R.E., Cirrincione, R., 2024. Web publication of multiscale geological data, methodology, and processes. https://doi.org/10.13140/RG.2.2.34955.50726
+
+
+
 **We recomend use Jupyter notebook version** [shp2html.ipynb](notebook/shp2html.ipynb)
-
-
 
 ## Jump to:
 
