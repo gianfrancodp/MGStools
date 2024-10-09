@@ -152,6 +152,7 @@ def create_geojson_js(geojson_file_path, template_js_path, destination_path):
         f.write(new_content)
         
     print(f'File created: {destination_path}')
+    return
 
 
 def append_js_to_html(js_file_path, html_file_path, new_htmlfile_path):
@@ -164,8 +165,8 @@ def append_js_to_html(js_file_path, html_file_path, new_htmlfile_path):
         new_htmlfile_path (str): path to the new HTML file.
     """
     # read the JS file
-    with open(js_file_path, 'r') as f:
-        js_content = f.read()
+    # with open(js_file_path, 'r') as f:
+    #     js_content = f.read()
 
     # read the HTML file
     with open(html_file_path, 'r') as f:
@@ -186,3 +187,26 @@ def append_js_to_html(js_file_path, html_file_path, new_htmlfile_path):
         f.write(str(soup))
         
     print(f'File updated: {new_htmlfile_path}')
+
+def convert_shp_to_geojson(input_shp, output_geojson):
+    """
+    SHP to GeoJSON conversion using ogr2ogr.
+    
+    Args:
+        input_shp (str): path to the input SHP file.
+        output_geojson (str): path to the output GeoJSON file.
+    """
+    try:
+        # gdal string command
+        ogr2ogr_command = [
+            'ogr2ogr',
+            '-f', 'GeoJSON',  # output format
+            output_geojson,   # output file
+            input_shp         # input file
+        ]
+        
+        # RUN
+        subprocess.run(ogr2ogr_command, check=True)
+        print(f'Conversion completed: {output_geojson}')
+    except subprocess.CalledProcessError as e:
+        print(f'{e}')
