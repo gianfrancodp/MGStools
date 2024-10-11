@@ -106,11 +106,11 @@ def run_gdal2tiles(input_raster, output_directory):
     if not os.path.exists(output_directory):
         os.makedirs(output_directory)
     else:
-        print("WARNING! - Directory already exists, Files will be overwrited! Continue? (Y).")
-        user_input = input().strip().upper()
-        if user_input != 'Y':
-            print("Operation aborted by the user.")
-            return
+        print("WARNING! - Directory already exists, Files with same name will be overwrited.")
+        # user_input = input().strip().upper()
+        # if user_input != 'Y':
+        #     print("Operation aborted by the user.")
+        #     return
        
     # command gdal2tiles.py parameters setting
     gdal2tiles_command = [
