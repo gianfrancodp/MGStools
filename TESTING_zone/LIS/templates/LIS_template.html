@@ -5,6 +5,7 @@
 <title>TOR1.jpg</title>
 <meta content="text/html; charset=utf-8" http-equiv="content-type"/>
 <meta content="no" http-equiv="imagetoolbar"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <style type="text/css"> v\:* {behavior:url(#default#VML);}
         html, body { overflow: hidden; padding: 0; height: 100%; width: 100%; font-family: 'Lucida Grande',Geneva,Arial,Verdana,sans-serif; }
         body { margin: 10px; background: #fff; }
@@ -26,7 +27,11 @@
 <style>
     body {
     font-family: 'Lucida Grande',Verdana,Geneva,Lucida,Arial,Helvetica,sans-serif;
-        font-size: 16px;
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        height: 100%;
+        box-sizing: border-box;
     }
     h1 {
     /*background: #333 url(https://openlayers.org/theme/img/logo-dark.svg) no-repeat scroll .3em center;*/
@@ -37,12 +42,17 @@
     margin: 0;
     background-size: 1.5em;
     text-decoration: none!important;
+    width: 100%;
     }
-    
+    .container {
+        max-width: 100%;
+        padding: 0 1em;
+    }
     .ol-popup h1 {
       font-size: 1.2em;
       background-size: 2em;
       padding-left: 3em;
+      width: 100%;
     }
     .ol-attribution ul {
     font-size: .8em;
@@ -59,18 +69,18 @@
 	<!-- Legend -->
 	<table>
 		<tr>
-			<td><img src="../../lib/mask/ShowAll.svg" id="ShowAll" onclick="legendClick('ShowAll')"></td>
-			<td><img src="../../lib/mask/Amph_legend.svg" id="Amph_legend" onclick="legendClick('Amph')"></td>
-			<td><img src="../../lib/mask/Ep_legend.svg" id="Ep_legend" onclick="legendClick('Ep')"></td>
-			<td><img src="../../lib/mask/Ap_legend.svg" id="Ap_legend" onclick="legendClick('Ap')"></td>
-			<td><img src="../../lib/mask/Kfs_legend.svg" id="Kfs_legend" onclick="legendClick('Kfs')"></td>
+			<td><img src="asset/legend/ShowAll.svg" id="ShowAll" onclick="legendClick('ShowAll')"></td>
+			<td><img src="asset/legend/Amph_legend.svg" id="Amph_legend" onclick="legendClick('Amph')"></td>
+			<td><img src="asset/legend/Ep_legend.svg" id="Ep_legend" onclick="legendClick('Ep')"></td>
+			<td><img src="asset/legend/Ap_legend.svg" id="Ap_legend" onclick="legendClick('Ap')"></td>
+			<td><img src="asset/legend/Kfs_legend.svg" id="Kfs_legend" onclick="legendClick('Kfs')"></td>
 		</tr>
 		<tr>
-			<td><img src="../../lib/mask/HideAll.svg" id="HideAll" onclick="legendClick('HideAll')"></td>
-			<td><img src="../../lib/mask/Ol_legend.svg" id="Ol_legend" onclick="legendClick('Ol')"></td>
-			<td><img src="../../lib/mask/Pl_legend.svg" id="Pl_legend" onclick="legendClick('Pl')"></td>
-			<td><img src="../../lib/mask/Px_legend.svg" id="Px_legend" onclick="legendClick('Px')"></td>
-			<td><img src="../../lib/mask/Qtz_legend.svg" id="Qtz_legend" onclick="legendClick('Qtz')"></td>
+			<td><img src="asset/legend/HideAll.svg" id="HideAll" onclick="legendClick('HideAll')"></td>
+			<td><img src="asset/legend/Ol_legend.svg" id="Ol_legend" onclick="legendClick('Ol')"></td>
+			<td><img src="asset/legend/Pl_legend.svg" id="Pl_legend" onclick="legendClick('Pl')"></td>
+			<td><img src="asset/legend/Px_legend.svg" id="Px_legend" onclick="legendClick('Px')"></td>
+			<td><img src="asset/legend/Qtz_legend.svg" id="Qtz_legend" onclick="legendClick('Qtz')"></td>
 			
 		</tr>
 
