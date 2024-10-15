@@ -123,6 +123,25 @@
     });
     map.addInteraction(select);
 
+    // Function to get the mineral name
+    function getMineralName(mineral) {
+        switch (mineral) {
+            case 'Amph': return 'Amphibole';
+            case 'Ep': return 'Epidote';
+            case 'Ap': return 'Apatite';
+            case 'Kfs': return 'K-Feldspar';
+            case 'Ol': return 'Olivine';
+            case 'Pl': return 'Plagioclase';
+            case 'Px': return 'Pyroxene';
+            case 'Qtz': return 'Quartz';
+            case 'Cal': return 'Calcite';
+            case 'Ca-Si min': return 'Calc-Silicate Mineral';
+            case 'Scap (aggr)': return 'Scapolite (aggregate)';
+            case 'Scap': return 'Scapolite';
+            case 'Oth': return 'Other';
+        }
+    }
+
     // popup
     var popup = new ol.Overlay.PopupFeature({
     popupClass: 'default anim',
@@ -133,7 +152,7 @@
         title: 
           // 'nom',   // only display the name
           function(f) {
-            return f.get('Mineral');
+            return f.get('Mineral') + ' - ' + getMineralName(f.get('Mineral'));
           },
         attributes: //
             {
@@ -189,7 +208,7 @@
    // Selection interaction
     const selectInteraction = new ol.interaction.Select({
         layers: [vectorLayer], //
-        condition: ol.events.condition.click // Seleziona i poligoni al clic
+        condition: ol.events.condition.click // Click selection
     });
     map.addInteraction(selectInteraction);
 
@@ -197,59 +216,67 @@
     selectInteraction.on('select', function(event) {
         const selectedFeatures = event.selected;
         selectedFeatures.forEach(function(feature) {
-            console.log('Poligono selezionato:', feature.getProperties());
-            // ...
+            updateSVG(feature.getProperties().Mineral);
         });
     });
-
     function updateSVG(mineral) {
-        SvgURI1	= 'templates/asset/rose' + mineral + '1.svg';
-        SvgURI2 = 'templates/asset/rose' + mineral + '2.svg';
+    if (mineral === 'Ap') {
+        SvgURI1 = 'templates/asset/rose/PAL22_Ap_1.svg';
+        SvgURI2 = 'templates/asset/rose/PAL22_Ap_2.svg';
+    }
+    if (mineral === 'Amph') {
+        SvgURI1 = 'templates/asset/rose/PAL22_Amph_1.svg';
+        SvgURI2 = 'templates/asset/rose/PAL22_Amph_2.svg';
+    }
+    if (mineral === 'Ep') {
+        SvgURI1 = 'templates/asset/rose/PAL22_Ep_1.svg';
+        SvgURI2 = 'templates/asset/rose/PAL22_Ep_2.svg';
+    }
+    if (mineral === 'Kfs') {
+        SvgURI1 = 'templates/asset/rose/PAL22_Kfs_1.svg';
+        SvgURI2 = 'templates/asset/rose/PAL22_Kfs_2.svg';
+    }
+    if (mineral === 'Ol') {
+        SvgURI1 = 'templates/asset/rose/PAL22_Ol_1.svg';
+        SvgURI2 = 'templates/asset/rose/PAL22_Ol_2.svg';
+    }
+    if (mineral === 'Oth') {
+        SvgURI1 = 'templates/asset/rose/PAL22_Oth_1.svg';
+        SvgURI2 = 'templates/asset/rose/PAL22_Oth_2.svg';
+    }
+    if (mineral === 'Pl') {
+        SvgURI1 = 'templates/asset/rose/PAL22_Pl_1.svg';
+        SvgURI2 = 'templates/asset/rose/PAL22_Pl_2.svg';
+    }
+    if (mineral === 'Px') {
+        SvgURI1 = 'templates/asset/rose/PAL22_Px_1.svg';
+        SvgURI2 = 'templates/asset/rose/PAL22_Px_2.svg';
+    }
+    if (mineral === 'Qtz') {
+        SvgURI1 = 'templates/asset/rose/PAL22_Qtz_1.svg';
+        SvgURI2 = 'templates/asset/rose/PAL22_Qtz_2.svg';
+    }
 
-        var imgElement1 = document.getElementById('svg1');
-        if (imgElement1) {
-            imgElement1.src = SvgURI1;
-            imgElement1.onerror = function() {
-                imgElement1.src = 'blank_diagram.svg';
-            }
-        }
-        var imgElement2 = document.getElementById('svg2');
-        if (imgElement2) {
-            imgElement2.src = SvgURI2;
-            imgElement2.onerror = function() {
-                imgElement2.src = 'blank_diagram.svg';
-            }
-        }
-    }
-    // Function to get full name of mineral from acronyms
-    function getMineralName(mineral) {
-        switch (mineral) {
-            case 'Amph': return 'Amphibole';
-            case 'Ep': return 'Epidote';
-            case 'Ap': return 'Apatite';
-            case 'Kfs': return 'K-Feldspar';
-            case 'Ol': return 'Olivine';
-            case 'Pl': return 'Plagioclase';
-            case 'Px': return 'Pyroxene';
-            case 'Qtz': return 'Quartz';
-            case 'Cal': return 'Calcite';
-            case 'Ca-Si min': return 'Calc-Silicate Mineral';
-            case 'Scap (aggr)': return 'Scapolite (aggregate)';
-            case 'Scap': return 'Scapolite';
-            case 'Oth': return 'Other';
-        }
-    }
+    var imgElement1 = document.getElementById('svg1');
+    if (imgElement1) {
+         imgElement1.src = SvgURI1;
+         imgElement1.onerror = function() {
+             imgElement1.src = 'blank_diagram.svg';
+         }
+     }
+     var imgElement2 = document.getElementById('svg2');
+     if (imgElement2) {
+         imgElement2.src = SvgURI2;
+         imgElement2.onerror = function() {
+             imgElement2.src = 'blank_diagram.svg';
+         }
+     }
+}
 
     function legendClick(mineral) {
-    // Example: 'Qtz': 'templates/asset/legend/Qtz_legend.svg'
-    // 'Qtz_UnW': 'templates/asset/rose_diagrams/PAL12_A_Qtz1.svg',
-    // 'Qtz_W': 'templates/asset/rose_diagrams/PAL12_A_Qtz2.svg'
-    // idLegend = mineral + '_legend';
-
     //addFilter(mineral);
-    
     updateSVG(mineral);
-    }
+    };
   </script>
  </body>
 </html>

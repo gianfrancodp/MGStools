@@ -326,6 +326,25 @@ def add_popup_feature_to_gdal2tiles_html_output(Html_path_input, Html_path_outpu
     });
     map.addInteraction(select);
 
+    // Function to get the mineral name
+    function getMineralName(mineral) {
+        switch (mineral) {
+            case 'Amph': return 'Amphibole';
+            case 'Ep': return 'Epidote';
+            case 'Ap': return 'Apatite';
+            case 'Kfs': return 'K-Feldspar';
+            case 'Ol': return 'Olivine';
+            case 'Pl': return 'Plagioclase';
+            case 'Px': return 'Pyroxene';
+            case 'Qtz': return 'Quartz';
+            case 'Cal': return 'Calcite';
+            case 'Ca-Si min': return 'Calc-Silicate Mineral';
+            case 'Scap (aggr)': return 'Scapolite (aggregate)';
+            case 'Scap': return 'Scapolite';
+            case 'Oth': return 'Other';
+        }
+    }
+
     // popup
     var popup = new ol.Overlay.PopupFeature({
     popupClass: 'default anim',
@@ -336,7 +355,7 @@ def add_popup_feature_to_gdal2tiles_html_output(Html_path_input, Html_path_outpu
         title: 
           // 'nom',   // only display the name
           function(f) {
-            return f.get('Mineral');
+            return f.get('Mineral') + ' - ' + getMineralName(f.get('Mineral'));
           },
         attributes: //
             {
