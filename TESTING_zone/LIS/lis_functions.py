@@ -408,3 +408,210 @@ def add_popup_feature_to_gdal2tiles_html_output(Html_path_input, Html_path_outpu
 
 
     return
+
+
+
+def add_legend_and_rosediagrams(Html_input,Html_output, legend_icons, map_view_height, blankdiagram, rose_diagrams):
+    """
+    Add the legend icons to the HTML file and the Javascript code to update the rose diagrams
+    based on the mineral name.
+    @param Html_input: the path of the input HTML file
+    @param Html_output: the path of the output HTML file
+    @param legend_icons: dictionary of the legend icons paths
+    @param map_view_height: the height of the map view after adding the legend icons
+    @param blankdiagram: the path of the blank diagram file
+    """
+
+    def generate_update_svg_JS_function(rose_diagrams, blankdiagram_name):
+        """
+        
+        Generate the Javascript function to update the SVG images of the rose diagrams
+        based on the mineral name.
+        @param rose_diagrams: dictionary of the rose diagrams paths, using key as the mineral name coded
+        with the condition (e.g. 'Qtz_UnW' for Quartz Unweathered)
+        @param blankdiagram_name: the final path of the blank diagram file to be subsituted in case of error
+        @return: the Javascript code as a string
+        """
+        js_code = "function updateSVG(mineral) {\n"
+        for key, value in rose_diagrams.items():
+            mineral, condition = key.split('_')
+            if condition == 'UnW':
+                js_code += f"    if (mineral === '{mineral}') {{\n"
+                js_code += f"        SvgURI1 = '{value}';\n"
+            else:
+                js_code += f"        SvgURI2 = '{value}';\n"
+                js_code += "    }\n"
+        js_code += """
+        var imgElement1 = document.getElementById('svg1');
+        if (imgElement1) {
+            imgElement1.src = SvgURI1;
+            imgElement1.onerror = function() {
+                imgElement1.src = '""" + blankdiagram_name + """';
+            }
+        }
+        var imgElement2 = document.getElementById('svg2');
+        if (imgElement2) {
+            imgElement2.src = SvgURI2;
+            imgElement2.onerror = function() {
+                imgElement2.src = '""" + blankdiagram_name + """';
+            }
+        }\n"""
+        js_code += "}\n"
+        
+        return js_code
+    
+
+    # open file
+    with open(Html_input, 'r') as f:
+        html_content = f.read()
+    # parse with BeautifulSoup
+
+    soup = BeautifulSoup(html_content, 'html.parser')
+
+    # copy the files stored in legend_icons dictionary to the output subdirectory
+    subdirectoryLEGEND = os.path.join(os.path.dirname(Html_output), 'templates','asset', 'legend')
+    os.makedirs(subdirectoryLEGEND, exist_ok=True)
+
+    for key in legend_icons:
+        icon_path = legend_icons[key]
+        icon_name = os.path.basename(icon_path)
+        icon_output_path = os.path.join(subdirectoryLEGEND, icon_name)
+        with open(icon_path, 'rb') as f:
+            with open(icon_output_path, 'wb') as f1:
+                f1.write(f.read())
+    
+    # add HTML tags for Legend icon
+    new_div_tag = soup.new_tag('div')
+    new_div_tag['id'] = 'legendbar'
+    new_div_tag['style'] = 'display: flex; justify-content: center;'
+
+    table_tag = soup.new_tag('table')
+    tr_tag = soup.new_tag('tr')
+    for key in legend_icons:
+        td_tag = soup.new_tag('td')
+        img_tag = soup.new_tag('img')
+        img_tag['src'] = legend_icons[key]
+        img_tag['id'] = f'{key}_legend'
+        img_tag['onclick'] = f'legendClick(\'{key}\')' # call the Javascript legendClic(mineral) function with the mineral name
+        td_tag.append(img_tag)
+        tr_tag.append(td_tag)
+    table_tag.append(tr_tag)
+    new_div_tag.append(table_tag)
+    # add the new div tag to the body
+    soup.body.append(new_div_tag)
+    
+    #reduce the height of the map to make space for the legend
+    style_tag = soup.find('style')
+    if style_tag:
+        css_content = style_tag.string
+        # Modifica il CSS specifico
+        css_content = css_content.replace('#map { height: 90%; border: 1px solid #888; }', f'#map {{ height: {map_view_height}; border: 1px solid #888; }}')
+        style_tag.string = css_content
+
+    # add CSS style for legend icons
+    new_style_tag = soup.new_tag('style')
+    css_string = "#ShowAll, #HideAll"
+    for key in legend_icons:
+        css_string += f", #{key}_legend"
+    css_string += " {width: 80px; filter: grayscale(0);}"
+    new_style_tag.string = css_string
+    #new_style_tag.string = """#ShowAll, #Amph_legend, #Ep_legend, #Ap_legend, #Kfs_legend, #HideAll, #Ol_legend, #Pl_legend, #Px_legend, #Qtz_legend {width: 80px; filter: grayscale(0);}"""
+    soup.head.append(new_style_tag)
+
+    # ROSE DIAGRAMS file and paths
+    # create the path for the rose diagrams
+    # TESTING_zone/LIS/templates/asset/rose/PAL12_A_Amph_2.svg
+    subdirectoryRoseD = os.path.join(os.path.dirname(Html_output), 'templates','asset', 'rose')
+    os.makedirs(subdirectoryRoseD, exist_ok=True)
+
+    #copy files stored in rose_diagrams dictionary to the output subdirectory
+    for key in rose_diagrams:
+        rose_diagram_path = rose_diagrams[key]
+        rose_diagram_name = os.path.basename(rose_diagram_path)
+        rose_diagram_output_path = os.path.join(subdirectoryRoseD, rose_diagram_name)
+        with open(rose_diagram_path, 'rb') as f:
+            with open(rose_diagram_output_path, 'wb') as f1:
+                f1.write(f.read())
+    
+
+    # write blank diagram svg in subfolder
+    blankdiagram_name = os.path.basename(blankdiagram)
+    blankdiagram_output_path = os.path.join(subdirectoryRoseD, blankdiagram_name)
+
+    with open(blankdiagram, 'rb') as f:
+        with open(blankdiagram_output_path, 'wb') as f1:
+            f1.write(f.read())
+    
+    
+    # add Javascript code
+
+
+    JSscriptText ="""
+    // Selection interaction
+    const selectInteraction = new ol.interaction.Select({
+        layers: [vectorLayer], //
+        condition: ol.events.condition.click // Click selection
+    });
+    map.addInteraction(selectInteraction);
+
+    // listener for the selection interaction
+    selectInteraction.on('select', function(event) {
+        const selectedFeatures = event.selected;
+        selectedFeatures.forEach(function(feature) {
+            updateSVG(feature.getProperties().Mineral);
+        });
+    });
+    """
+    Javascript_updateSVG = generate_update_svg_JS_function(rose_diagrams, blankdiagram_name)
+    JSscriptText += Javascript_updateSVG
+    JSscriptText += """
+    function legendClick(mineral) {
+    //addFilter(mineral);
+    updateSVG(mineral);
+    };
+    """
+   
+    new_script_tag = soup.new_tag('script')
+    new_script_tag.string = JSscriptText
+    soup.body.append(new_script_tag)
+
+
+    # Add the rose diagrams tags with BeautifulSoup
+
+    #adding HTML tags
+
+    tableRoseDiagram = soup.new_tag('table')
+    rowRoseDiagram = soup.new_tag('tr')
+    columnRoseDiagram1 = soup.new_tag('td')
+    RoseDiagram1 = soup.new_tag('img')
+    RoseDiagram1['id'] = 'svg1'
+    RoseDiagram1['src'] = blankdiagram
+    RoseDiagram1['width'] = '100%'
+    columnRoseDiagram1.append(RoseDiagram1)
+    rowRoseDiagram.append(columnRoseDiagram1)
+    columnRoseDiagram2 = soup.new_tag('td')
+    RoseDiagram2 = soup.new_tag('img')
+    RoseDiagram2['id'] = 'svg2'
+    RoseDiagram2['src'] = blankdiagram
+    RoseDiagram2['width'] = '100%'
+    columnRoseDiagram2.append(RoseDiagram2)
+    rowRoseDiagram.append(columnRoseDiagram2)
+    tableRoseDiagram.append(rowRoseDiagram)
+    soup.append(tableRoseDiagram)
+
+        
+    #write the modified html to a new file
+    with open(Html_output, 'w') as file:
+        file.write(soup.prettify())
+    
+    # copy the files stored in legend_icons dictionary to the output subdirectory
+    subdirectory = os.path.join(os.path.dirname(Html_output), 'templates','asset', 'legend')
+    os.makedirs(subdirectory, exist_ok=True)
+
+    for key in legend_icons:
+        icon_path = legend_icons[key]
+        icon_name = os.path.basename(icon_path)
+        icon_output_path = os.path.join(subdirectory, icon_name)
+        with open(icon_path, 'rb') as f:
+            with open(icon_output_path, 'wb') as f1:
+                f1.write(f.read())

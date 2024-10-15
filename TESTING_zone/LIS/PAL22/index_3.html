@@ -257,20 +257,20 @@
         SvgURI2 = 'templates/asset/rose/PAL22_Qtz_2.svg';
     }
 
-    var imgElement1 = document.getElementById('svg1');
-    if (imgElement1) {
-         imgElement1.src = SvgURI1;
-         imgElement1.onerror = function() {
-             imgElement1.src = 'blank_diagram.svg';
-         }
-     }
-     var imgElement2 = document.getElementById('svg2');
-     if (imgElement2) {
-         imgElement2.src = SvgURI2;
-         imgElement2.onerror = function() {
-             imgElement2.src = 'blank_diagram.svg';
-         }
-     }
+        var imgElement1 = document.getElementById('svg1');
+        if (imgElement1) {
+            imgElement1.src = SvgURI1;
+            imgElement1.onerror = function() {
+                imgElement1.src = 'blank_diagram.svg';
+            }
+        }
+        var imgElement2 = document.getElementById('svg2');
+        if (imgElement2) {
+            imgElement2.src = SvgURI2;
+            imgElement2.onerror = function() {
+                imgElement2.src = 'blank_diagram.svg';
+            }
+        }
 }
 
     function legendClick(mineral) {
