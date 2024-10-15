@@ -409,8 +409,6 @@ def add_popup_feature_to_gdal2tiles_html_output(Html_path_input, Html_path_outpu
 
     return
 
-
-
 def add_legend_and_rosediagrams(Html_input,Html_output, legend_icons, map_view_height, blankdiagram, rose_diagrams):
     """
     Add the legend icons to the HTML file and the Javascript code to update the rose diagrams
