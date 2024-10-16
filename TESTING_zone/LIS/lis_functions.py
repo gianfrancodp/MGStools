@@ -1,5 +1,4 @@
 import os
-import sys
 import subprocess
 from bs4 import BeautifulSoup
     
@@ -432,6 +431,8 @@ def add_legend_and_rosediagrams(Html_input,Html_output, legend_icons, map_view_h
         """
         js_code = "function updateSVG(mineral) {\n"
         for key, value in rose_diagrams.items():
+            value = os.basename(value)
+            value = os.path.join('asset',value) # add the path to the asset folder
             mineral, condition = key.split('_')
             if condition == 'UnW':
                 js_code += f"    if (mineral === '{mineral}') {{\n"
@@ -467,7 +468,7 @@ def add_legend_and_rosediagrams(Html_input,Html_output, legend_icons, map_view_h
     soup = BeautifulSoup(html_content, 'html.parser')
 
     # copy the files stored in legend_icons dictionary to the output subdirectory
-    subdirectoryLEGEND = os.path.join(os.path.dirname(Html_output), 'templates','asset', 'legend')
+    subdirectoryLEGEND = os.path.join(os.path.dirname(Html_output), 'asset')
     os.makedirs(subdirectoryLEGEND, exist_ok=True)
 
     for key in legend_icons:
@@ -519,7 +520,7 @@ def add_legend_and_rosediagrams(Html_input,Html_output, legend_icons, map_view_h
     # ROSE DIAGRAMS file and paths
     # create the path for the rose diagrams
     # TESTING_zone/LIS/templates/asset/rose/PAL12_A_Amph_2.svg
-    subdirectoryRoseD = os.path.join(os.path.dirname(Html_output), 'templates','asset', 'rose')
+    subdirectoryRoseD = os.path.join(os.path.dirname(Html_output), 'asset')
     os.makedirs(subdirectoryRoseD, exist_ok=True)
 
     #copy files stored in rose_diagrams dictionary to the output subdirectory
