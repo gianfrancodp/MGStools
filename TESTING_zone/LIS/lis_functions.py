@@ -431,7 +431,7 @@ def add_legend_and_rosediagrams(Html_input,Html_output, legend_icons, map_view_h
         """
         js_code = "function updateSVG(mineral) {\n"
         for key, value in rose_diagrams.items():
-            value = os.basename(value)
+            value = os.path.basename(value)
             value = os.path.join('asset',value) # add the path to the asset folder
             mineral, condition = key.split('_')
             if condition == 'UnW':
@@ -487,9 +487,12 @@ def add_legend_and_rosediagrams(Html_input,Html_output, legend_icons, map_view_h
     table_tag = soup.new_tag('table')
     tr_tag = soup.new_tag('tr')
     for key in legend_icons:
+        icon_path = legend_icons[key]
+        icon_name = os.path.basename(icon_path)
+        icon_output_path = os.path.join('asset', icon_name)
         td_tag = soup.new_tag('td')
         img_tag = soup.new_tag('img')
-        img_tag['src'] = legend_icons[key]
+        img_tag['src'] = icon_output_path
         img_tag['id'] = f'{key}_legend'
         img_tag['onclick'] = f'legendClick(\'{key}\')' # call the Javascript legendClic(mineral) function with the mineral name
         td_tag.append(img_tag)
@@ -518,8 +521,6 @@ def add_legend_and_rosediagrams(Html_input,Html_output, legend_icons, map_view_h
     soup.head.append(new_style_tag)
 
     # ROSE DIAGRAMS file and paths
-    # create the path for the rose diagrams
-    # TESTING_zone/LIS/templates/asset/rose/PAL12_A_Amph_2.svg
     subdirectoryRoseD = os.path.join(os.path.dirname(Html_output), 'asset')
     os.makedirs(subdirectoryRoseD, exist_ok=True)
 
@@ -536,6 +537,7 @@ def add_legend_and_rosediagrams(Html_input,Html_output, legend_icons, map_view_h
     # write blank diagram svg in subfolder
     blankdiagram_name = os.path.basename(blankdiagram)
     blankdiagram_output_path = os.path.join(subdirectoryRoseD, blankdiagram_name)
+    blankdiagram_relative_path = os.path.join('asset', blankdiagram_name)
 
     with open(blankdiagram, 'rb') as f:
         with open(blankdiagram_output_path, 'wb') as f1:
@@ -584,14 +586,14 @@ def add_legend_and_rosediagrams(Html_input,Html_output, legend_icons, map_view_h
     columnRoseDiagram1 = soup.new_tag('td')
     RoseDiagram1 = soup.new_tag('img')
     RoseDiagram1['id'] = 'svg1'
-    RoseDiagram1['src'] = blankdiagram
+    RoseDiagram1['src'] = blankdiagram_relative_path
     RoseDiagram1['width'] = '100%'
     columnRoseDiagram1.append(RoseDiagram1)
     rowRoseDiagram.append(columnRoseDiagram1)
     columnRoseDiagram2 = soup.new_tag('td')
     RoseDiagram2 = soup.new_tag('img')
     RoseDiagram2['id'] = 'svg2'
-    RoseDiagram2['src'] = blankdiagram
+    RoseDiagram2['src'] = blankdiagram_relative_path
     RoseDiagram2['width'] = '100%'
     columnRoseDiagram2.append(RoseDiagram2)
     rowRoseDiagram.append(columnRoseDiagram2)
@@ -603,14 +605,3 @@ def add_legend_and_rosediagrams(Html_input,Html_output, legend_icons, map_view_h
     with open(Html_output, 'w') as file:
         file.write(soup.prettify())
     
-    # copy the files stored in legend_icons dictionary to the output subdirectory
-    subdirectory = os.path.join(os.path.dirname(Html_output), 'templates','asset', 'legend')
-    os.makedirs(subdirectory, exist_ok=True)
-
-    for key in legend_icons:
-        icon_path = legend_icons[key]
-        icon_name = os.path.basename(icon_path)
-        icon_output_path = os.path.join(subdirectory, icon_name)
-        with open(icon_path, 'rb') as f:
-            with open(icon_output_path, 'wb') as f1:
-                f1.write(f.read())
