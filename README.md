@@ -5,7 +5,16 @@ After various decades of digital transition, publishing and spreading of geo-dat
 Geoscientists have a multitude of digital data across scales, across geometric types, across dataset types and more, such as Geo-graphic data, Geo-spatial data and Microscale-data.
 
 **Metpetools** is a set of Python tools to create web-viewers of geological data provided from different type of analysis. A frist version of this project provided a multiscale web publication process for the site of Palmi shear zone  (Italy). A complex web-GIS viewer that contain different type of data at different scale: from microstructural data of thin section provided in a LIS-viewer (Litologic Information Sistem), a 3D model viewer of outcrops.
-___
+
+
+
+---
+
+## Table of contents
+
+1. [Making a Web viewer of a "Thin section" (LIS) from data](#making-a-web-viewer-of-a-thin-section-lis-from-data)
+2. *Web viewer of a 3D model from KMZ file* (UNDER DEVELOPMENT)
+3. *Pakaging all into a web-gis framwork* (UNDER DEVELOPMENT)
 
 Actual version proposed is used in:
 
@@ -13,15 +22,7 @@ Di Pietro, G., D’Agostino, A., Ortolano, G., Fazio, E., Visalli, R., Musumeci,
 
 ---
 
-### Table of contents
-
-1. Making a Web viewer of a "Thin section" (LIS) from data
-2. *Web viewer of a 3D model from KMZ file* (UNDER DEVELOPMENT)
-3. *Pakaging all into a web-gis framwork* (UNDER DEVELOPMENT)
-
----
-
-# Making a Web viewer of a "Thin section" (LIS) from data
+## Making a Web viewer of a "Thin section" (LIS) from data
 
 The file [`lis_functions.py`](LIS/lis_functions.py) contain the Python scripts and function to make a webviewe of a thin section and grain poligons from scratch using GDAL, Beautiful Soup in a Python environment.
 
