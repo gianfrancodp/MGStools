@@ -16,10 +16,34 @@ Di Pietro, G., D’Agostino, A., Ortolano, G., Fazio, E., Visalli, R., Musumeci,
 ### Table of contents
 
 1. Making a Web viewer of a "Thin section" (LIS) from data
-2. Web viewer of a 3D model from KMZ file
-3. Pakaging all into a web-gis framwork
+2. *Web viewer of a 3D model from KMZ file* (UNDER DEVELOPMENT)
+3. *Pakaging all into a web-gis framwork* (UNDER DEVELOPMENT)
 
 ---
 
 # Making a Web viewer of a "Thin section" (LIS) from data
 
+The file [`lis_functions.py`](LIS/lis_functions.py) contain the Python scripts and function to make a webviewe of a thin section and grain poligons from scratch using GDAL, Beautiful Soup in a Python environment.
+
+Tu use in your enviroment you can use the [`lis_functions.py`](LIS/lis_functions.py) file as importing function, but please refer to [`requirements.txt`](LIS/requirements.txt) for a proper python environment.
+
+Also described in the [notebook example](LIS/LIS_of_a_thinSection.ipynb), the process is a sequence of these phases:
+
+1. Import files
+2. Create Raster tiles using Gdal
+3. Convert SHP to Geojson using GDAL ogr2ogr
+4. Add GeoJson overlay to web-viewer
+5. Add pop-up feature to the map
+6. Add rosediagram and legend feature to the webpage
+
+Please refer to the [notebook example](LIS/LIS_of_a_thinSection.ipynb) to see a complete and working test.
+
+|Function name| Description|
+|---|---|
+|`upload_files_widgets`|isUsing ipywidgets to create a file upload widget for the file upload in Jupyter Notebook|
+|`save_to_temp_dir`|Save to temporary directory the file uploaded by the user in Jupyter Notebook using *upload_files_widgets*|
+|`run_gdal2tiles`|Run *gdal2tiles.py* command to create tiles from a raster file|
+|`convert_shp_to_geojson`|Script to convert SHP into GeoJSON using ogr2ogr|
+|`add_geojson_overlay_to_gdal2tiles_html_output`|Function script to append a GeoJSON overlay to the HTML created with *gdal2tiles*|
+|`add_popup_feature_to_gdal2tiles_html_output`|Function script to append JS and CSS link of PopUp Feature to the HTML created with *gdal2tiles* and %append_js_to_html function|
+|`add_legend_and_rosediagrams`|dd the legend icons to the HTML file and the Javascript code to update the rose diagrams based on the mineral name|
