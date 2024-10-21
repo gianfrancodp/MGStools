@@ -9,6 +9,9 @@ def upload_files_widgets():
 
     NOTE: syncronize with save_to_temp_dir() the name of file and the directory
     TODO: change Jpg name reference to generic raster name reference
+
+    Returns:
+        tuple: Shapefile_selector, Jpgfile_selector, projectname
     '''
     import ipywidgets as widgets
     from IPython.display import display
@@ -53,6 +56,9 @@ def save_to_temp_dir(Shapefile_selector, Jpgfile_selector, projectname):
 
     NOTE: syncronize with upload_files_widgets() the name of file and the directory
     TODO: change Jpg name reference to generic raster name reference
+
+    Returns:
+        dict: files_path
     '''
     
     
@@ -98,6 +104,13 @@ def save_to_temp_dir(Shapefile_selector, Jpgfile_selector, projectname):
 def run_gdal2tiles(input_raster, output_directory):
     '''
     Run gdal2tiles.py command to create tiles from a raster file
+
+    Args:
+        input_raster (str): path to the input raster file.
+        output_directory (str): path to the output directory.
+
+    Returns:
+        None
     '''
     # Check if the output directory exists
     if not os.path.exists(output_directory):
@@ -135,6 +148,9 @@ def create_geojson_js(geojson_file_path, template_js_path, destination_path):
     Args:
         geojson_file_pat (str): path to the GeoJSON file.
         template_js_path (str): path to the OpenLayers GeoJSON vector overlay template.
+    
+    Returns:
+        None
     """
 
     # read template file and store in a string
@@ -157,12 +173,15 @@ def append_js_to_html(js_file_path, html_file_path, new_htmlfile_path):
     """
     NOTE: deprecated function
 
-    Append a JS file to an HTML file before the </body> tag.
+    Script to append a JS file to an HTML file before the </body> tag.
 
     Args:
         js_file_path (str): path to the JS file to append as source.
         html_file_path (str): path to the HTML file.
         new_htmlfile_path (str): path to the new HTML file.
+    
+    Returns:
+        None
     """
     # read the JS file
     # with open(js_file_path, 'r') as f:
@@ -190,11 +209,14 @@ def append_js_to_html(js_file_path, html_file_path, new_htmlfile_path):
 
 def convert_shp_to_geojson(input_shp, output_geojson):
     """
-    SHP to GeoJSON conversion using ogr2ogr.
+    Script to convert SHP into GeoJSON using ogr2ogr.
     
     Args:
         input_shp (str): path to the input SHP file.
         output_geojson (str): path to the output GeoJSON file.
+    
+    Returns:
+        None
     """
     try:
         # gdal string command
@@ -215,7 +237,7 @@ def convert_shp_to_geojson(input_shp, output_geojson):
 
 def add_geojson_overlay_to_gdal2tiles_html_output(geojson_file_path, Html_path_input, Html_path_output):
     """
-    Function to append a GeoJSON overlay to the HTML created with gdal2tiles.
+    Function script to append a GeoJSON overlay to the HTML created with gdal2tiles.
     NOTE: this function work with a specific version of OpenLayers library and
     a specific version of gdal2tiles.
     
@@ -223,6 +245,9 @@ def add_geojson_overlay_to_gdal2tiles_html_output(geojson_file_path, Html_path_i
         geojson_file_path (str): path to the GeoJSON file.
         Html_path_input (str): path to the HTML file to modify.
         Html_path_output (str): path to the new HTML file.
+    
+    Returns:
+        None
     """
     # read html files:
     with open(Html_path_input, 'r') as f:
@@ -280,13 +305,16 @@ def add_geojson_overlay_to_gdal2tiles_html_output(geojson_file_path, Html_path_i
 def add_popup_feature_to_gdal2tiles_html_output(Html_path_input, Html_path_output):
 
     """
-    Function to append JS and CSS link of PopUp Feature to the HTML created with 
+    Function script to append JS and CSS link of PopUp Feature to the HTML created with 
     gdal2tiles and %append_js_to_html function.
     NOTE: this function work with a specific version of OpenLayers-Extension library
     Change the version of the library if needed.
 
     Args:
         Html_path (str): path to the html file to modify
+
+    Returns:
+        None
     """
 
     # read html files:
@@ -412,11 +440,16 @@ def add_legend_and_rosediagrams(Html_input,Html_output, legend_icons, map_view_h
     """
     Add the legend icons to the HTML file and the Javascript code to update the rose diagrams
     based on the mineral name.
-    @param Html_input: the path of the input HTML file
-    @param Html_output: the path of the output HTML file
-    @param legend_icons: dictionary of the legend icons paths
-    @param map_view_height: the height of the map view after adding the legend icons
-    @param blankdiagram: the path of the blank diagram file
+    Args:
+        Html_input (str): the path of the input HTML file
+        Html_output (str): the path of the output HTML file
+        legend_icons (dict): dictionary of the legend icons paths
+        map_view_height (int): the height of the map in pixel view after adding the legend icons
+        blankdiagram (str): the path of the blank diagram file
+        rose_diagrams (dict): dictionary of the rose diagrams paths
+    
+    Returns:
+        None
     """
 
     def generate_update_svg_JS_function(rose_diagrams, blankdiagram_name):
