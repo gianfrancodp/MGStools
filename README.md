@@ -17,7 +17,7 @@ Geoscientists have a multitude of digital data across scales, across geometric t
     - 1.4. [Raster file specification](#14-raster-file-specification)
     - 1.5. [Adding popup feature](#15-add-popup-to-the-map)
     - 1.6. [Add mineral legend and rose diagram](#16-add-mineral-legend-and-rosediagrams)
-2. *Web viewer of a 3D model from KMZ file* (UNDER DEVELOPMENT)
+2. [3D viewer of a KMZ model](#2-3d-viewer-of-a-kmz-model)
 3. *Pakaging all into a web-gis framwork* (UNDER DEVELOPMENT)
 
 Actual version proposed is used in:
@@ -151,4 +151,6 @@ The function `add_legend_and_rosediagrams` will modify the html produced by step
 
 The function `add_legend_and_rosediagrams` works with the list of file paths used for the rosediagram and legend buttons. In this example, we provide two simple dict variables that contain the *mineral code* and the relative file path.
 
-![video](https://i.imgur.com/jXEnsva.gif)
+---
+
+## 2. 3D Viewer of a KMZ model
