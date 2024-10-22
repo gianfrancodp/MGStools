@@ -1,25 +1,32 @@
-Contributors:
-Alberto D'Agostino
-Gianfranco Di Pietro
+# License and contributors
 
-CREDITS:
-for Python libraries used:
-Copyright 2001-2024, Python Software Foundation.
+## Contributors:
 
-for GDAL/OGR libraries used:
-Copyright 1998-2024 Frank Warmerdam, Even Rouault, and others
+Alberto D'Agostino @albdag
+Gianfranco Di Pietro @gianfrancodp
 
-Javascript libraries used:
+## CREDITS:
 
-Image Map Resizer (imageMapResizer.min.js ) - v1.0.10 - 2019-04-10
+Every specific library and frameworker used is under its specific license.
+
+- Python libraries, Copyright 2001-2024, Python Software Foundation.
+- ["OpenLayers" Library](https://github.com/openlayers/openlayers)
+- "OpenLayer Extension" AKA `ol-ext` ([source code](https://github.com/Viglino/ol-ext?tab=readme-ov-file)) released under BSD 3-Clause License. Copyright (c) 2016-2021, Jean-Marc Viglino, IGN-France [All rights reserved](https://github.com/Viglino/ol-ext?tab=BSD-3-Clause-2-ov-file)
+- [GDAL](https://gdal.org/en/latest/index.html) and [gdal2tiles](https://gdal.org/en/latest/programs/gdal2tiles.html) © 1998-2024 Frank Warmerdam, Even Rouault, and others
+- [Beautiful Soap](https://www.crummy.com/software/BeautifulSoup/) 1996-2024 Leonard Richardson. Unless otherwise noted, Creative Commons License.
+- [GeoJSON](https://geojson.org/) standard definition [RFC7946](https://datatracker.ietf.org/doc/html/rfc7946) (Butler et al, 2016)
+- [Micro-Fabric Analyzer (MFA)](https://www.mdpi.com/2220-9964/10/2/51) (Visalli et al, 2021).
+- [Quantitative X-ray Map Analyser (Q-XRMA)](https://www.sciencedirect.com/science/article/pii/S0098300417306982) (Ortolano et al, 2018)
+- ["ArcStereoNet](https://doi.org/10.3390/ijgi10020050): A New ArcGIS® Toolbox for Projection and Analysis of Meso- and Micro-Structural Data" (Ortolano et al, 2021)
+- [Three.JS](https://github.com/mrdoob/three.js/)
+- Image Map Resizer (imageMapResizer.min.js ) - v1.0.10 - 2019-04-10
 Copyright: (c) 2019 David J. Bradshaw - dave@bradshaw.net
 License: MIT
+- jQuery v3.5.1 | (c) JS Foundation and other contributors | jquery.org/license */
 
-jQuery v3.5.1 | (c) JS Foundation and other contributors | jquery.org/license */
+## GNU General Public License
 
-
-
-
+Other files and code are licensed under GNU General Public License.
 
                     GNU GENERAL PUBLIC LICENSE
                        Version 3, 29 June 2007
