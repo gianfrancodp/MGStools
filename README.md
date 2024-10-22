@@ -6,13 +6,17 @@ Geoscientists have a multitude of digital data across scales, across geometric t
 
 **Metpetools** is a set of Python tools to create web-viewers of geological data provided from different type of analysis. A frist version of this project provided a multiscale web publication process for the site of Palmi shear zone  (Italy). A complex web-GIS viewer that contain different type of data at different scale: from microstructural data of thin section provided in a LIS-viewer (Litologic Information Sistem), a 3D model viewer of outcrops.
 
-
-
 ---
 
 ## Table of contents
 
-1. [Making a Web viewer of a "Thin section" (LIS) from data](#making-a-web-viewer-of-a-thin-section-lis-from-data)
+1. [Making a Web viewer of a "Thin section" (LIS) from data](#1-making-a-web-viewer-of-a-thin-section-lis-from-data)
+    - 1.1. [Python Environment](#11-python-and-enviromnent-main-requirements)
+    - 1.2. [Credit and Library used](#12-credits-and-library-used)
+    - 1.3. [Vector file specification](#13-vector-file-specification-details)
+    - 1.4. [Raster file specification](#14-raster-file-specification)
+    - 1.5. [Adding popup feature](#15-add-popup-to-the-map)
+    - 1.6. [Add mineral legend and rose diagram](#16-add-mineral-legend-and-rosediagrams)
 2. *Web viewer of a 3D model from KMZ file* (UNDER DEVELOPMENT)
 3. *Pakaging all into a web-gis framwork* (UNDER DEVELOPMENT)
 
@@ -20,9 +24,13 @@ Actual version proposed is used in:
 
 Di Pietro, G., D’Agostino, A., Ortolano, G., Fazio, E., Visalli, R., Musumeci, R.E., Cirrincione, R., 2024. Web publication of multiscale geological data, methodology, and processes. [DOI: 10.13140/RG.2.2.34955.50726](https://doi.org/10.13140/RG.2.2.34955.50726) (keynote available)
 
+![keynote](readme_images/web_publication_multuiscale_data_slide.jpeg)
+
 ---
 
-## Making a Web viewer of a "Thin section" (LIS) from data
+## 1. Making a Web viewer of a "Thin section" (LIS) from data
+
+![video](https://i.imgur.com/jXEnsva.gif)
 
 The file [`lis_functions.py`](LIS/lis_functions.py) contain the Python scripts and function to make a webviewe of a thin section and grain poligons from scratch using GDAL, Beautiful Soup in a Python environment.
 
@@ -48,3 +56,99 @@ Please refer to the [notebook example](LIS/LIS_of_a_thinSection.ipynb) to see a 
 |`add_geojson_overlay_to_gdal2tiles_html_output`|Function script to append a GeoJSON overlay to the HTML created with *gdal2tiles*|
 |`add_popup_feature_to_gdal2tiles_html_output`|Function script to append JS and CSS link of PopUp Feature to the HTML created with *gdal2tiles* and %append_js_to_html function|
 |`add_legend_and_rosediagrams`|dd the legend icons to the HTML file and the Javascript code to update the rose diagrams based on the mineral name|
+
+### 1.1 Python and enviromnent main requirements
+
+- Python 3
+- GDAL
+- beautifulsoup4==4.12.3
+- ipython==8.12.3
+- ipywidgets==8.1.2
+
+### 1.2 Credits and library used
+
+- ["OpenLayers" Library](https://github.com/openlayers/openlayers)
+- "OpenLayer Extension" AKA `ol-ext` ([source code](https://github.com/Viglino/ol-ext?tab=readme-ov-file)) released under BSD 3-Clause License. Copyright (c) 2016-2021, Jean-Marc Viglino, IGN-France [All rights reserved](https://github.com/Viglino/ol-ext?tab=BSD-3-Clause-2-ov-file)
+- [GDAL](https://gdal.org/en/latest/index.html) and [gdal2tiles](https://gdal.org/en/latest/programs/gdal2tiles.html) © 1998-2024 Frank Warmerdam, Even Rouault, and others
+- [Beautiful Soap](https://www.crummy.com/software/BeautifulSoup/) 1996-2024 Leonard Richardson. Unless otherwise noted, Creative Commons License.
+- [GeoJSON](https://geojson.org/) standard definition [RFC7946](https://datatracker.ietf.org/doc/html/rfc7946) (Butler et al, 2016)
+- [Micro-Fabric Analyzer (MFA)](https://www.mdpi.com/2220-9964/10/2/51) (Visalli et al, 2021).
+- [Quantitative X-ray Map Analyser (Q-XRMA)](https://www.sciencedirect.com/science/article/pii/S0098300417306982) (Ortolano et al, 2018)
+- ["ArcStereoNet](https://doi.org/10.3390/ijgi10020050): A New ArcGIS® Toolbox for Projection and Analysis of Meso- and Micro-Structural Data" (Ortolano et al, 2021)
+
+### 1.3 Vector File specification details
+
+<u>**Shapefile**</u>: the minimum collection of 4 files [.shp, .dbf, .shx, .cpg] in ESRI standard format. the shapefile will be converted in GeoJSON format by `ogr2ogr` subprocess. The Shapefile must cointain polygons of mineral of the thin section.
+
+#### 1.3.1 Field table definition used in this LIS and stored in Shapefile
+
+|Field name|type|example value|NOTE|
+|---|---|---|---|
+|*Mineral*|str|`Pl`|Coded name of mineral|
+|O|float|`90.0`|Degree of orientation|
+|Asr|float|`0.39438`|Aspect Ratio|
+|A|float|`0.12928`|Area in micrometers|
+|R|float|`0.58411`|Roundness|
+|GSI|float|`1.87833`|Grain Shape Index|
+
+The code of minerals to use is reported in the following table:
+
+#### 1.3.2 Codename of mineral used
+
+|*Code*|Mineral name|
+|---|---|
+|Amph|Amphibole|
+|Ep|Epidote|
+|Ap|Apatite|
+|Kfs|K-Feldspar|
+|Ol|Olivine|
+|Pl|Plagioclase|
+|Px|Pyroxene|
+|Qtz|Quartz|
+
+In the example polygons are generated by these tools:
+- [Micro-Fabric Analyzer (MFA)](https://www.mdpi.com/2220-9964/10/2/51) (Visalli et al, 2021).
+- [Quantitative X-ray Map Analyser (Q-XRMA)](https://www.sciencedirect.com/science/article/pii/S0098300417306982) (Ortolano et al, 2018)
+
+### 1.4 Raster file specification 
+
+<u>**Image**</u>: Through the use of gdal2tiles the original image is broken up into hundreds of small fragments (tiles) while maintaining the original characteristics. We do not suggest formats such as TIFF, JP2, ECW, etc., which although supported by gdal2tiles may not be readable by a web browser. Instead, we suggest using a more web-compatible format such as PNG or JPG for the raster.
+
+NOTE: <u>**NO-Coordinate Reference System (NO-CRS)**</u>: check that both Shapefile and Image are correctly overlapped in a NO-CRS system. We only use the internal coordinate of the pixel of the raster, polygon vertex defined in Shapefile are referring to a specific pixel of the Imagefile.
+
+### 1.5 Add popup to the map
+
+The pop-up feature is provided using `ol-ex` a Javascript library "OpenLayer Extension".
+
+For more info about `ol-ext` is [released](https://github.com/Viglino/ol-ext?tab=readme-ov-file) under BSD 3-Clause License. Copyright (c) 2016-2021, Jean-Marc Viglino, IGN-France [All rights reserved](https://github.com/Viglino/ol-ext?tab=BSD-3-Clause-2-ov-file).
+
+The function **`add_popup_feature_to_gdal2tiles_html_output(Html_input,Html_output)`** work on an html file provided by function `add_geojson_overlay_to_gdal2tiles_html_output`. It only works if *Html_input* is the result of the process we are conducting.
+
+This function follow these 3 steps:
+
+1. Add a link to JS and CSS of `ol-ext` hosted by *cdn.jsdelivr.net* in the head and bottom of html_input
+2. Add a customized script code with `ol.Overlay.PopupFeature()`
+3. Add customized CSS that overrides some features for better visualization.
+
+### 1.6 Add mineral legend and rosediagrams
+
+With *ArcStereoNet* [*] or other software for analizing microstructural data of Thin section, we obtained a  weighted and unweighted rose diagrams based on grains cumulative area.
+
+[*] Ortolano, Gaetano, Alberto D’Agostino, Mario Pagano, Roberto Visalli, Michele Zucali, Eugenio Fazio, Ian Alsop, and Rosolino Cirrincione. 2021. "ArcStereoNet: A New ArcGIS® Toolbox for Projection and Analysis of Meso- and Micro-Structural Data" ISPRS International Journal of Geo-Information 10, no. 2: 50. https://doi.org/10.3390/ijgi10020050
+
+After this, we stored SVGs files of rosediagrams in `example_data\asset\rose`. 
+
+The feature that we are adding must provide an interaction with the user that every click on a polygon corresponding an action of modification of the webpage. If the user click on a "Quartz"-classified polygon, the webviewer provide the "Quartz" rose-diagram. 
+
+Another related feature is the ability to show and query the rosediagram results by clicking a button representing a mineral type. This requires a button for each type of mineral classified in the thin section. We create these buttons using a common graphic software and store it in the `example_data\asset\legend`. 
+
+The function `add_legend_and_rosediagrams` will modify the html produced by steps before in this way:
+
+1. Copy files of rosediagram and legend buttons in an appropriate subfolder
+2. Adds a "blank rose diagram" for the case of "other" or empty mineral result from query.
+3. Using Beautidul Soup inserts in the html some Javascript code and new Html tags for the legend and the rosediagrams.
+4. Resizes the height of the map and modifies other style and script settings for better result.
+
+The function `add_legend_and_rosediagrams` works with the list of file paths used for the rosediagram and legend buttons. In this example, we provide two simple dict variables that contain the *mineral code* and the relative file path.
+
+![video](https://i.imgur.com/jXEnsva.gif)
