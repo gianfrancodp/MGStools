@@ -18,6 +18,10 @@ Geoscientists have a multitude of digital data across scales, across geometric t
     - 1.5. [Adding popup feature](#15-add-popup-to-the-map)
     - 1.6. [Add mineral legend and rose diagram](#16-add-mineral-legend-and-rosediagrams)
 2. [3D viewer of a KMZ model](#2-3d-viewer-of-a-kmz-model)
+    - 2.1 [Introduction](#21-introduction)
+    - 2.2 [Python environment requirements](#22-python-environment-requirements)
+    - 2.3 [Html template](#23-the-html-template-file)
+    - 2.4 [Local folder files](#24-the-three-local-folder)
 3. *Pakaging all into a web-gis framwork* (UNDER DEVELOPMENT)
 
 Actual version proposed is used in:
@@ -154,3 +158,61 @@ The function `add_legend_and_rosediagrams` works with the list of file paths use
 ---
 
 ## 2. 3D Viewer of a KMZ model
+
+A comprehensive working example of a 3D viewer is provided within the directory designated [3D/TEST11](3D/TEST11).
+The procedure for generating a customized web viewer is meticulously outlined within the computational notebook located at [3D/kmz2html.ipynb](3D/kmz2html.ipynb).  To replicate this process, it is recommended to download the entirety of the [3D](3D) directory of this repository into your Python environment and utilize the provided example notebook as a reference.
+
+![GIF](readme_images/3dKMZexample.gif)
+
+### 2.1 Introduction
+
+The web-based representation of three-dimensional objects is achieved through the utilization of 3D rendering libraries designed for geometric models. Among these, the predominant free and open-source solution is [Three.JS](https://github.com/mrdoob/three.js/), a JavaScript library renowned for its capacity to manage both raw geometric data and models conforming to standardized formats.
+
+This particular implementation employs the [KMZ Loader](https://github.com/mrdoob/three.js/blob/dev/examples/jsm/loaders/KMZLoader.js), an add-on module within the Three.JS framework, enabling the seamless integration of KMZ files.
+
+### 2.2 Python Environment Requirements
+
+using `pip` to install these dependencies
+
+* os
+* ZipFile
+* ipywidgets
+* IPython.display
+
+### 2.3 The *html-template* file
+
+The file [htmltemplate.py](htmltemplate.py) contains a collection of string variables storing the HTML structure of a 3D model viewer, along with auxiliary functions.  Leveraging Python, this structure facilitates the dynamic generation of customized HTML, tailored to specific input data. To enhance comprehension of the process involved in packaging this web viewer, a step-by-step analysis of the HTML elements is employed.
+
+The subsequent sequence of items adheres to the order of variables and functions utilized:
+
+|Variable of function name|Description|
+|---|---|
+|1. `KMZ_HTMLHEAD`| Html header, title of page and simple meta tag|
+|2. `KMZ_IMPORTLIBS`|Script for import Three.JS from a CDN server, in this version we use unpkg.com|
+|3. `KMZ_THREEJS_ADDONS_FILES_ADD_TO_PROJECT(projectName)`|Function to create folder and file for packaging|
+|4. `KMZ_OPENINGSCRIPT`|the html row of script that open customized code for viewer|
+|5. `KMZ_LOADINGIMAGE(SPLASHIMAGE_URI)`|Function to create Javascript code that load an GIFimage as a splash screen|
+|6. `KMZ_THREEJS_script(KMZ_URI)`|Function to create JS code for loading an KMZ file|
+|7. `KMZ_CLOSINGSCRIPT`|String with HTML code for closing script tag|
+|8. `KMZ_STYLE`|Html code with CSS nested|
+|9. `KMZ_HTMLFOOT`|Html code with closing tag and footer|
+
+The more important step is the #6. For a better viewing there are essential little customization to do with every specific model.
+
+- Set or fix custom coordinates of the center position of the model loaded using `KMZLoader` JS function
+- Set or fix custom coordinates of camera center using `THREE.PerspectiveCamera` JS function
+- Set different light and rendering options.
+
+It is recommended to implement these modifications directly within the HTML/JavaScript code following the generation of the initial HTML structure using Python. Identifying the specific values requiring adjustments for coordinates and other variables is a straightforward process within this context.
+
+### 2.4 The *three* local folder
+
+Due to the inherent limitations of Content Delivery Networks (CDNs) in effectively serving these specific files, and to mitigate potential complications arising from Cross-Origin Resource Sharing (CORS) restrictions, a preferred strategy involves their local storage and retrieval directly within the KMZ model file.
+
+The [three](three) subfolder contains add-ons and other JavaScript files imported from the Three.JS project. All of this files is a dump copy from [Three.JS](https://github.com/mrdoob/three.js/).
+
+For maintaing the default structure of Three.JS there are stored using the structure: `three/addons/jsm` inside this folder there are 3 subfolders:
+
+- `three/addons/jsm/controls` It contain the *OrbitControl* module for navigation feature of 3D scene
+- `three/addons/jsm/libs` It contain *fflate* module (fast JavaScript compression/decompression) for increase rendering speed
+- `three/addons/jsm/loaders` It contain *ColladaLoader*, *KMZLoader* and *TGALoader* modules of Three.Js
