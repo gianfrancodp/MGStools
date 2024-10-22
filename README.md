@@ -166,18 +166,19 @@ The procedure for generating a customized web viewer is meticulously outlined wi
 
 ### 2.1 Introduction
 
-The web-based representation of three-dimensional objects is achieved through the utilization of 3D rendering libraries designed for geometric models. Among these, the predominant free and open-source solution is [Three.JS](https://github.com/mrdoob/three.js/), a JavaScript library renowned for its capacity to manage both raw geometric data and models conforming to standardized formats.
+The web-based representation of three-dimensional objects is achieved through the utilization of 3D rendering libraries designed for geometric models. Among these, the predominant free and open-source solution is [Three.JS](https://github.com/mrdoob/three.js/), a JavaScript library renowned for its capability to manage both raw geometric data and models conforming to standardized formats.
 
 This particular implementation employs the [KMZ Loader](https://github.com/mrdoob/three.js/blob/dev/examples/jsm/loaders/KMZLoader.js), an add-on module within the Three.JS framework, enabling the seamless integration of KMZ files.
 
 ### 2.2 Python Environment Requirements
 
-using `pip` to install these dependencies
+using `pip install` to install these dependencies
 
-* os
-* ZipFile
+* os (*)
+* ZipFile (*)
 * ipywidgets
-* IPython.display
+
+(*) probably alredy installed with default Python environment.
 
 ### 2.3 The *html-template* file
 
@@ -197,7 +198,7 @@ The subsequent sequence of items adheres to the order of variables and functions
 |8. `KMZ_STYLE`|Html code with CSS nested|
 |9. `KMZ_HTMLFOOT`|Html code with closing tag and footer|
 
-The more important step is the #6. For a better viewing there are essential little customization to do with every specific model.
+The most important step is the #6. For a better viewing there are essential little customization to do with every specific model.
 
 - Set or fix custom coordinates of the center position of the model loaded using `KMZLoader` JS function
 - Set or fix custom coordinates of camera center using `THREE.PerspectiveCamera` JS function
