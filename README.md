@@ -49,7 +49,7 @@ Please refer to the [notebook example](LIS/LIS_of_a_thinSection.ipynb) to see a 
 
 |Function name| Description|
 |---|---|
-|`upload_files_widgets`|isUsing ipywidgets to create a file upload widget for the file upload in Jupyter Notebook|
+|`upload_files_widgets`|Using *ipywidgets* to create a file upload widget for the file upload in Jupyter Notebook|
 |`save_to_temp_dir`|Save to temporary directory the file uploaded by the user in Jupyter Notebook using *upload_files_widgets*|
 |`run_gdal2tiles`|Run *gdal2tiles.py* command to create tiles from a raster file|
 |`convert_shp_to_geojson`|Script to convert SHP into GeoJSON using ogr2ogr|

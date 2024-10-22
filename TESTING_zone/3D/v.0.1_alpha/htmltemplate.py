@@ -1,10 +1,10 @@
-##### HTML variables and html strings used in shp2html.ipynb
+# ##### HTML variables and html strings used in shp2html.ipynb
 
-HTMLHEAD = '<!DOCTYPE html>\n<html>\n<head>\n\t<title>Image Map</title>\n'\
-    '\t<meta charset="utf-8">\n\t<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>\n'\
-    '\t<script src="https://cdnjs.cloudflare.com/ajax/libs/image-map-resizer/1.0.10/js/imageMapResizer.min.js"></script>\n'\
-        '</head>\n<body>\n'   
-HTMLFOOT = '<script>\n\t$(document).ready(function() {\n\t $(\'map\').imageMapResize();\n\t}); \n</script>\n</body>\n</html>'    
+# HTMLHEAD = '<!DOCTYPE html>\n<html>\n<head>\n\t<title>Image Map</title>\n'\
+#     '\t<meta charset="utf-8">\n\t<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>\n'\
+#     '\t<script src="https://cdnjs.cloudflare.com/ajax/libs/image-map-resizer/1.0.10/js/imageMapResizer.min.js"></script>\n'\
+#         '</head>\n<body>\n'   
+# HTMLFOOT = '<script>\n\t$(document).ready(function() {\n\t $(\'map\').imageMapResize();\n\t}); \n</script>\n</body>\n</html>'    
 
 ##### KMZ2HTML variables and html strings used in kmz2html.ipynb
 
@@ -24,7 +24,7 @@ KMZ_IMPORTLIBS= '<script type="importmap"> \n'\
         '\t} \n'\
     '} \n'\
     '</script>\n'
-#Save threeJS addons file inside folder of project
+#3. Save threeJS addons file inside folder of project
 def KMZ_THREEJS_ADDONS_FILES_ADD_TO_PROJECT(projectName):
     import os
     import shutil
@@ -66,10 +66,10 @@ def KMZ_THREEJS_ADDONS_FILES_ADD_TO_PROJECT(projectName):
     return 
 
 
-#3. Opening script tag
+#4. Opening script tag
 KMZ_OPENINGSCRIPT = '<script type="module">\n'
 
-#4. Javascript code to load an GIFimage as a splash screen
+#5. Javascript code to load an GIFimage as a splash screen
 def KMZ_LOADINGIMAGE(SPLASHIMAGE_URI):
     HTMLstring = '	// Loading image\n'\
 	'\t var loadingImage = document.createElement(\'img\');\n'\
@@ -92,7 +92,7 @@ def KMZ_LOADINGIMAGE(SPLASHIMAGE_URI):
     return HTMLstring
 
 # Javascript code to load the KMZ file
-#5. Open main Three.JS script
+#6. Main Three.JS script
 def KMZ_THREEJS_script(KMZ_URI):
     HTML_string = '	// Three.js script                              \n'\
         '\t import * as THREE from \'three\';                       \n'\
@@ -151,11 +151,11 @@ def KMZ_THREEJS_script(KMZ_URI):
 		'\t 		renderer.render( scene, camera );                           \n'\
 		'\t 	}                                                               \n'
     return HTML_string
-# close script tag
+# 7. close script tag
 KMZ_CLOSINGSCRIPT = '</script>\n'
 
-# style tag
+# 8. style tag
 KMZ_STYLE = '<style> body { margin: 0; } </style>'
 
-# html footer and closing tags
+# 9. html footer and closing tags
 KMZ_HTMLFOOT = '\n</body>\n</html>'
