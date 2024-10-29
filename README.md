@@ -4,6 +4,8 @@ After various decades of digital transition, publishing and spreading of geo-dat
 
 Geoscientists have a multitude of digital data across scales, across geometric types, across dataset types and more, such as Geo-graphic data, Geo-spatial data and Microscale-data.
 
+![representing geodata on the web schema](readme_images/Representing_geo-data_on_the_web.jpg)
+
 **Metpetools** is a set of Python tools to create web-viewers of geological data provided from different type of analysis. A frist version of this project provided a multiscale web publication process for the site of Palmi shear zone  (Italy). A complex web-GIS viewer that contain different type of data at different scale: from microstructural data of thin section provided in a LIS-viewer (Litologic Information Sistem), a 3D model viewer of outcrops.
 
 ---
