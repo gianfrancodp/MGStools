@@ -55,13 +55,13 @@ Please refer to the [notebook example](LIS/LIS_of_a_thinSection.ipynb) to see a 
 
 |Function name| Description|
 |---|---|
-|`upload_files_widgets`|Using *ipywidgets* to create a file upload widget for the file upload in Jupyter Notebook|
+|`upload_files_widgets`|Using *ipywidgets* it create a file upload widget User interface for input loading Jupyter Notebook|
 |`save_to_temp_dir`|Save to temporary directory the file uploaded by the user in Jupyter Notebook using *upload_files_widgets*|
 |`run_gdal2tiles`|Run *gdal2tiles.py* command to create tiles from a raster file|
 |`convert_shp_to_geojson`|Script to convert SHP into GeoJSON using ogr2ogr|
-|`add_geojson_overlay_to_gdal2tiles_html_output`|Function script to append a GeoJSON overlay to the HTML created with *gdal2tiles*|
-|`add_popup_feature_to_gdal2tiles_html_output`|Function script to append JS and CSS link of PopUp Feature to the HTML created with *gdal2tiles* and %append_js_to_html function|
-|`add_legend_and_rosediagrams`|dd the legend icons to the HTML file and the Javascript code to update the rose diagrams based on the mineral name|
+|`add_geojson_overlay_to_gdal2tiles_html_output`|Add GeoJSON overlay to raster feature, using OpenLayers JS and CSS|
+|`add_popup_feature_to_gdal2tiles_html_output`|Add PopUp feature capable to visualize grain data, using `ol-ext` JS and CSS|
+|`add_legend_and_rosediagrams`|Add legend icons and JS capable to update rose diagrams after user click on grain polygons|
 
 ### 1.1 Python and enviromnent main requirements
 

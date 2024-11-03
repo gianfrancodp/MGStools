@@ -4,7 +4,7 @@ from bs4 import BeautifulSoup
     
 def upload_files_widgets():
     '''
-    Using ipywidgets to create a file upload widget for the file upload
+    Use ipywidgets to create a file upload widget for the file upload
     in Jupyter Notebook
 
     NOTE: syncronize with save_to_temp_dir() the name of file and the directory
@@ -51,7 +51,7 @@ def upload_files_widgets():
 
 def save_to_temp_dir(Shapefile_selector, Jpgfile_selector, projectname):
     '''
-    Save to temporary directory the file uploaded by the user
+    Save to a temporary directory the files uploaded by the user
     in Jupyter Notebook using upload_files_widgets()
 
     NOTE: syncronize with upload_files_widgets() the name of file and the directory
