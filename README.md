@@ -84,7 +84,7 @@ Please refer to the [notebook example](LIS/LIS_of_a_thinSection.ipynb) to see a 
 
 ### 1.3 Vector File specification details
 
-**Shapefile**: the minimum collection of 4 files [.shp, .dbf, .shx, .cpg] in ESRI standard format. the shapefile will be converted in GeoJSON format by `ogr2ogr` subprocess. The Shapefile must cointain polygons of mineral of the thin section.
+**Shapefile**: the minimum collection of 4 files [.shp, .dbf, .shx, .cpg] in ESRI standard format. The shapefile will be converted in GeoJSON format by `ogr2ogr` subprocess. The Shapefile must contain polygons of mineral of the thin section.
 
 #### 1.3.1 Field table definition used in this LIS and stored in Shapefile
 
