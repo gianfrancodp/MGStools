@@ -163,7 +163,7 @@ The function `add_legend_and_rosediagrams` works with the list of file paths use
 ## 2. 3D Viewer of a KMZ model
 
 A comprehensive working example of a 3D viewer is provided within the directory designated [3D/TEST11](3D/TEST11).
-The procedure for generating a customized web viewer is meticulously outlined within the computational notebook located at [3D/kmz2html.ipynb](3D/kmz2html.ipynb).  To replicate this process, it is recommended to download the entirety of the [3D](3D) directory of this repository into your Python environment and utilize the provided example notebook as a reference.
+The procedure for generating a customized web viewer is meticulously outlined within the computational notebook located at [3D/Kmz_web_viewer.ipynb](3D/Kmz_web_viewer.ipynb).  To replicate this process, it is recommended to download the entirety of the [3D](3D) directory of this repository into your Python environment and utilize the provided example notebook as a reference.
 
 ![GIF](readme_images/3dKMZexample.gif)
 
@@ -183,9 +183,9 @@ using `pip install` to install these dependencies
 
 (*) probably alredy installed with default Python environment.
 
-### 2.3 The *html-template* file
+### 2.3 The *`KMZViewer_functions.py`* file
 
-The file [htmltemplate.py](htmltemplate.py) contains a collection of string variables storing the HTML structure of a 3D model viewer, along with auxiliary functions.  Leveraging Python, this structure facilitates the dynamic generation of customized HTML, tailored to specific input data. To enhance comprehension of the process involved in packaging this web viewer, a step-by-step analysis of the HTML elements is employed.
+The file [KMZViewer_functions.py](KMZViewer_functions.py) contains a collection of string variables storing the HTML structure of a 3D model viewer, along with auxiliary functions.  Leveraging Python, this structure facilitates the dynamic generation of customized HTML, tailored to specific input data. To enhance comprehension of the process involved in packaging this web viewer, a step-by-step analysis of the HTML elements is employed.
 
 The subsequent sequence of items adheres to the order of variables and functions utilized:
 
@@ -200,6 +200,10 @@ The subsequent sequence of items adheres to the order of variables and functions
 |7. `KMZ_CLOSINGSCRIPT`|String with HTML code for closing script tag|
 |8. `KMZ_STYLE`|Html code with CSS nested|
 |9. `KMZ_HTMLFOOT`|Html code with closing tag and footer|
+
+### The **`create_3dml_viewer()`** function
+
+At the end of the [KMZViewer_functions.py](KMZViewer_functions.py) file, a function called: `create_3mdl_viewer()` runs the 9 step before, and it is possible to call with 3 input variables:
 
 The most important step is the #6. For a better viewing there are essential little customization to do with every specific model.
 
