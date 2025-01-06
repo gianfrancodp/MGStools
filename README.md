@@ -1,4 +1,4 @@
-# Metpetools
+# Tools for packaging static webpages for Multiscale Geo-structural information System (MGS)
 
 After various decades of digital transition, publishing and spreading of geo-data actually is exclusively with Web and internet channels. Everybody know the effective communication and easy to access to the data and maps using web or mobile devices. The last decade of web-development and expecially web-gis technology development provided a very number of projects and libraries (OpenLayers, LeafLet etc..) for a better "production process" of geo-data publication on the web. Today especially in Opensource community we have a several front-end project that offer possibility to develop effective interface for data publishing on the web and mobile devices.
 
