@@ -38,7 +38,7 @@ Di Pietro, G., D’Agostino, A., Ortolano, G., Fazio, E., Visalli, R., Musumeci,
 
 ![video](https://i.imgur.com/jXEnsva.gif)
 
-The file [`lis_functions.py`](LIS/lis_functions.py) contain the Python scripts and function to make a webviewe of a thin section and grain poligons from scratch using GDAL, Beautiful Soup in a Python environment.
+The file [`lis_functions.py`](LIS/lis_functions.py) contain the Python scripts and function to make a webview of a thin section and grain poligons from scratch using GDAL, Beautiful Soup in a Python environment.
 
 Tu use in your enviroment you can use the [`lis_functions.py`](LIS/lis_functions.py) file as importing function, but please refer to [`requirements.txt`](LIS/requirements.txt) for a proper python environment.
 
