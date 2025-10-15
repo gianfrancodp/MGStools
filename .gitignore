@@ -19,6 +19,7 @@ __pycache__/
 *.Desktop.ini
 $RECYCLE.BIN/
 *.\*
-old_versions/ArcGis toolboxes/._images
-old_versions/Qgis processing script/._images
-old_versions/shp2html/._notebook
+
+# Other files and folders
+.vscode/
+old_versions
